@@ -158,5 +158,13 @@ Ir a [Pixelden Urku](https://www.pixeden.com/html5-website-templates/urku-html5-
 
 ## GIT - Guardando el estado de nuestro proyecto
 
+:+1:
+
 ## Código fuente de la sección portafolio.zip
+
+* Creamos un Tag para poder descargar el proyecto tal cual al final de la sección 2.
+
+    `git tag -a v0.2.0 -m “Fin sección 2”`
+
+    `git push --tags`
 
