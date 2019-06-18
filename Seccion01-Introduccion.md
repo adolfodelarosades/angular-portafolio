@@ -1,10 +1,10 @@
 # Introducción
 
-##Introducción##
+## Introducción
 
 :)
 
-##Instalaciones necesarias para seguir el curso##
+## Instalaciones necesarias para seguir el curso
 
 Hacer las siguientes instalaciones:
 
@@ -25,7 +25,7 @@ Hacer las siguientes instalaciones:
 * Descargar el material anexo **extensiones-vsc.pdf** e instalar las extenciones como se menciona en el paso anterior.
 
 
-##Opcional - Configurar GIT##
+## Opcional - Configurar GIT
 
 **`git --version`** Ver la versión instalada de Git
 
@@ -38,11 +38,11 @@ Hacer las siguientes instalaciones:
 **`git config --global alias.s "status -s"`** Creación de alias para **status**
 
 
-##¿Cómo hacer preguntas?##
+## ¿Cómo hacer preguntas?
 
 :)
 
-##Objetivo del curso##
+## Objetivo del curso
 
 :)
 
