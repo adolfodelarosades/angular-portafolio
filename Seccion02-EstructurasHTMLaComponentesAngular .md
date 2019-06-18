@@ -133,6 +133,29 @@ Ir a [Pixelden Urku](https://www.pixeden.com/html5-website-templates/urku-html5-
 
 ## Componente del cuerpo de la página
 
+1. Creación del componente **portafolio** en el directorio **pages**
+
+    `ng g c pages/portafolio --spec=false`
+
+2. Modificar contenido del **portafolio.component.html**
+
+    * Insertar el código de la sección **section** del archivo **portafolio-masonry.html** de la plantilla
+
+3. Modificar contenido de **app.component.html**
+
+    * Hacer referencia al nuevo componente:
+
+        `<app-header></app-header>`
+
+        `<section class="ae-container-fluid rk-main">`
+
+        `<app-portafolio></app-portafolio>`
+
+        `</section>`
+
+        `<app-footer></app-footer>`
+
+
 ## GIT - Guardando el estado de nuestro proyecto
 
 ## Código fuente de la sección portafolio.zip
