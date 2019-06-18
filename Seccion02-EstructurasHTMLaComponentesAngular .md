@@ -2,7 +2,7 @@
 
 ## Introducción a la sección
 
-:)
+:+1:
 
 ## Descarga del tema que usaremos de ejemplo URKU-Portfolio-Template-HTML5-PIXEDEN
 
@@ -14,39 +14,39 @@ Ir a [Pixelden Urku](https://www.pixeden.com/html5-website-templates/urku-html5-
 
 ## Iniciando el proyecto de Angular
 
-#### 1. Crear proyecto angular
+1. Crear proyecto angular
 
-**`ng new portafolio`** 
+    `ng new portafolio`
 
-#### 2. Arrancar proyecto
+2. Arrancar proyecto
 
-**`cd portafolio`**
+    `cd portafolio`
 
-**`ng serve -o`**
+    `ng serve -o`
 
-#### 3. Cargar proyecto en el navegador
+3. Cargar proyecto en el navegador
 
-**`http://localhost:4200/`**
+    `http://localhost:4200/`
 
-#### 4. Configurar Git en el proyecto
+4. Configurar Git en el proyecto
 
-**`git init`**
+    `git init`
 
-#### 5. Crear repositorio remoto
+5. Crear repositorio remoto
 
-Ir a [GitHub](https://github.com) y crear el repositorio **angular-portafolio**
+    Ir a [GitHub](https://github.com) y crear el repositorio **angular-portafolio**
 
-#### 6. Subir nuestro repositorio local al remoto
+6. Subir nuestro repositorio local al remoto
 
-**`git remote add origin https://github.com/adolfodelarosades/angular-portafolio.git`**
+    `git remote add origin https://github.com/adolfodelarosades/angular-portafolio.git`
 
-**`git push -u origin master`**
+    `git push -u origin master`
 
-#### 7. Asociar un Tag a la versión inicial y subirla al Remoto
+7. Asociar un Tag a la versión inicial y subirla al Remoto
 
-**`git tag -a v0.0.0 -m “Version inicial”`**
+    `git tag -a v0.0.0 -m “Version inicial”`
 
-**`git push --tags`**
+    `git push --tags`
 
 
 ## Estructura HTML básica a nuestro proyecto de Angular
@@ -66,6 +66,40 @@ Ir a [GitHub](https://github.com) y crear el repositorio **angular-portafolio**
 * Recargar la página para apreciar los cambios en el estilo.
 
 ## Componente del encabezado
+
+1. Creación del primer componente header
+
+    `ng g c shared/header --spec=false`
+
+    * **g** generate
+    * **c** component
+    * **shared/header** carpeta/nombre_componente
+    * **--spec=false** no crear la parte de pruebas unitarias o pruebas de integración
+    * Me indica lo siguiente:
+
+    `CREATE src/app/shared/header/header.component.html (25 bytes)`
+
+    `CREATE src/app/shared/header/header.component.ts (269 bytes)`
+
+    `CREATE src/app/shared/header/header.component.css (0 bytes)`
+
+    `UPDATE src/app/app.module.ts (403 bytes)`
+
+2. Modificar contenido del **index.html**
+
+    Añadir clase en el body `<body class="top-fixed">`
+
+3. Modificar contenido del **header.component.html**
+
+    * Insertar el código de la sección **header** del archivo **portafolio-masonry.html** de la plantilla
+
+4. Modificar contenido de **app.component.html**
+
+    * Hacer referencia al nuevo componente:
+
+        `<app-header></app-header>`
+
+        `<h1>Hola Mundo</h1>`
 
 ## Componente del pie de la página
 
