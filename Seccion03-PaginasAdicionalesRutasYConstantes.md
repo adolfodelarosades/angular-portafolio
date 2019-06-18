@@ -32,7 +32,36 @@
 
 ## Tarea - Creando la página del producto
 
+1. Creación del componente **item** en el directorio **pages**
+
+    `ng g c pages/item --spec=false`
+
+2. Modificar contenido del **item.component.html**
+
+    * Insertar el código de la sección **section** del archivo **portafolio-item.html** de la plantilla
+
+3. Modificar contenido de **app.component.html**
+
+    * Hacer referencia al nuevo componente (por ahora es la única forma de testear el nuevo componente):
+
+        `<app-header></app-header>`
+
+        `<section class="ae-container-fluid rk-main">`
+
+        `<!-- <app-portafolio></app-portafolio> -->`
+
+        `<!-- <app-about></app-about> -->`
+
+        `<app-item></app-item>`
+
+        `</section>`
+        
+        `<app-footer></app-footer>`
+
+
 ## Resolución - Creando la página del producto
+
+:+1:
 
 ## Creando rutas para nuestro sitio web
 
