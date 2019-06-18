@@ -103,6 +103,34 @@ Ir a [Pixelden Urku](https://www.pixeden.com/html5-website-templates/urku-html5-
 
 ## Componente del pie de la página
 
+1. Creación del componente footer
+
+    `ng g c shared/footer --spec=false`
+
+2. Modificar contenido del **footer.component.html**
+
+    * Insertar el código de la sección **footer** del archivo **portafolio-masonry.html** de la plantilla
+
+3. Modificar contenido de **app.component.html**
+
+    * Hacer referencia al nuevo componente:
+
+        `<app-header></app-header>`
+
+        `<br><br><br><br><br><br>`
+
+        `<h1>Hola Mundo</h1>`
+
+        `<app-footer></app-footer>`
+
+4. Crear propiedad **anio** en **footer.component.ts**
+
+    `anio: number = new Date().getFullYear();`
+
+5. Usar esa propiedad **anio** en **footer.component.html** para hacer el año dinámico.
+
+    `{{ anio }}`
+
 ## Componente del cuerpo de la página
 
 ## GIT - Guardando el estado de nuestro proyecto
