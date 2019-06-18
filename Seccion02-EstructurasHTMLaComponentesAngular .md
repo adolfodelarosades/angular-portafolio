@@ -51,6 +51,20 @@ Ir a [GitHub](https://github.com) y crear el repositorio **angular-portafolio**
 
 ## Estructura HTML básica a nuestro proyecto de Angular
 
+* Copiar el contenido del directorio **assets** de la plantilla descargada al directorio **assets** de nuestro proyecto.
+
+* En el archivo **index.html** modificar los estilos para hacer referencia a los copiados en **assets**.
+
+    `<link rel="icon" type="image/svg+xml" href="assets/img/urku-ico.svg">`
+
+    `<link rel="stylesheet" href="assets/css/aurora-pack.min.css">`
+
+    `<link rel="stylesheet" href="assets/css/aurora-theme-base.min.css">`
+
+    `<link rel="stylesheet" href="assets/css/urku.css">`
+
+* Recargar la página para apreciar los cambios en el estilo.
+
 ## Componente del encabezado
 
 ## Componente del pie de la página
