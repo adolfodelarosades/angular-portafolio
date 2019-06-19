@@ -182,6 +182,26 @@ La forma de hacerlo es cambiando los **href** por **routerLink**, es lo que usa 
 
 ## Uso del hash en las rutas
 
+* Adelantándonos un poco al momento en el que tengamos que desplegar la página en el servidor, vamos a ver algunas consideraciones que debemos tener. Suponiendo que tengo el enlace:
+
+    `www.miservidor/item/1`
+
+* Normalmente se considera que item es una carpeta que dentro tiene otra carpeta 1, y dentro de esto tienen un archivo index.html, para relacionar este archivo con esa carpeta se utiliza el archivo .htaccess donde se configura lo explicado anteriormente, como esta página la vamos a subir a github pages, nosotros no tenemos acceso a ese archivo y es posible que si lo dejamos así nuestra página no vaya bien, por lo que vamos a hacer un uso de un hash en la ruta para indicarle que en este caso item no es una carpeta sino más bien forma parte de la ruta.
+
+* Para configurar el hash de una forma general abrimos el archivo app-routing.module.ts y en la parte de los imports:
+
+
+    `RouterModule.forRoot( app_routes, { useHash: true} )`
+
+* Por lo que ahora nuestras rutas quedan así:
+
+    ```
+    http://localhost:4200/#/home
+    http://localhost:4200/#/item
+    http://localhost:4200/#/about
+
+    ```
+
 ## Código fuente de la sección
 
 
