@@ -234,6 +234,53 @@ Vamos a crear una interface que nos va a permitir recuperar los valores del JSON
 
 ## Usando el servicio para reemplazar información en la página web
 
+Tenemos la información de la respuesta en la propiedad **info** del servicio, vamos a usarla para interpolar la información en nuestras páginas.
+
+1. Usar el servicio en el Header.
+
+    * Inyectar el servicio en el Header.
+
+        `constructor( public infoPagSer: InfoPaginaService) { }`
+
+    * La variable **infoPagSer** es la que podemos usar en el html para **interpolar** los valores, cambiando:
+
+        `<a routerLink="home">urku portfolio<sup>tm</sup></a>`
+
+        Por 
+
+        `<a routerLink="home">{{ infoPagSer.info.titulo }} <sup>tm</sup></a>`
+
+2. Usar el servicio en el Footer.
+
+    * Inyectar el servicio en el Footer.
+
+        `constructor( public infoPagSer: InfoPaginaService) { }`
+
+    * La variable **infoPagSer** es la que podemos usar en el html para **interpolar** los valores, cambiando:
+
+        `<a href="#0" class="rk-social-btn ">`
+
+        Por
+         
+        ```
+        <a target="_black" [href]="infoPagSer.info.facebook" class="rk-social-btn ">
+        <a target="_black" [href]="infoPagSer.info.twitter" class="rk-social-btn ">
+        <a target="_black" [href]="infoPagSer.info.instagram" class="rk-social-btn ">
+        <a target="_black" [href]="infoPagSer.info.tublr" class="rk-social-btn ">
+        ```
+
+        `<a href="#0" class="rk-dark-color ">contact@urkuportfolio.com </a>`
+
+        Por 
+
+        `<a href="mailTo:{{ infoPagSer.info.email }}" class="rk-dark-color ">{{ infoPagSer.info.email }} </a>`
+
+    * **NOTA**: Como se puede observar hay dos formas de interpolar:
+
+        * Usando {{ propiedad }}
+        * [algo] ="propiedad"
+
+
 ## Agregando animaciones a nuestras páginas
 
 ##Código fuente de la sección
