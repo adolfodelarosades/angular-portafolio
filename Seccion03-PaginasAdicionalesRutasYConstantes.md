@@ -190,7 +190,6 @@ La forma de hacerlo es cambiando los **href** por **routerLink**, es lo que usa 
 
 * Para configurar el hash de una forma general abrimos el archivo app-routing.module.ts y en la parte de los imports:
 
-
     `RouterModule.forRoot( app_routes, { useHash: true} )`
 
 * Por lo que ahora nuestras rutas quedan así:
@@ -202,6 +201,9 @@ La forma de hacerlo es cambiando los **href** por **routerLink**, es lo que usa 
 
     ```
 
+* Este hash indica a los navegadores web que lo que viene después del # realmente no es un directorio en el servidor, sino que es una parte de la ruta, con esto podremos subir nuestra página a servidores donde no podamos tener acceso al archivo .htaccess, si tuviéramos acceso a este archivo en nuestro servidor podríamos configurar sin usar el hash.
+
 ## Código fuente de la sección
 
+:+1:
 
