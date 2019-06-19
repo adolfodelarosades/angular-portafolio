@@ -31,7 +31,8 @@
 * Necesitamos crear un servicio que lea nuestro JSON y comparta esos datos a lo largo de toda la aplicación.
 
     ```
-     ng g s services/infoPagina --spec false
+    ng g s services/infoPagina --spec false
+    
     Option "spec" is deprecated: Use "skipTests" instead.
     CREATE src/app/services/info-pagina.service.ts (139 bytes)
     ```
