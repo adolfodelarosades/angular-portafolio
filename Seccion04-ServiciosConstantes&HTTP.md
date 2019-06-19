@@ -32,7 +32,7 @@
 
     ```
     ng g s services/infoPagina --spec false
-    
+
     Option "spec" is deprecated: Use "skipTests" instead.
     CREATE src/app/services/info-pagina.service.ts (139 bytes)
     ```
@@ -147,6 +147,90 @@
     ```
 
 ## Crear interfaz para controlar la información de la página
+
+Vamos a crear una interface que nos va a permitir recuperar los valores del JSON en propiedades con los mismos nombres.
+
+1. Crear el archivo **info-pagina.interface.ts** en el directorio **app/interfaces**
+
+    Hay dos formas de crear la interface:
+
+    * Meter manualmente cada uno de los campos
+    * Usar la extensión **JSON to TS**
+        * Se copia el JSON para tenerlo en clipboard
+        * En **info-pagina.interface.ts** se pulsa `Ctrl + Shift + P`
+        * Se escribe json para buscar la extensión
+        * Se selecciona JSON to TS
+        * Se crea la interface completa.
+            ```
+            interface RootObject {
+                titulo: string;
+                email: string;
+                nombre_corto: string;
+                pagina_autor: string;
+                facebook: string;
+                twitter: string;
+                instagram: string;
+                tublr: string;
+                equipo_trabajo: any[];
+            }
+            ```
+        * Solo le cambio el encabezado para que quede así:
+            ```
+            export interface InfoPaginaInterface {
+                titulo: string;
+                email: string;
+                nombre_corto: string;
+                pagina_autor: string;
+                facebook: string;
+                twitter: string;
+                instagram: string;
+                tublr: string;
+                equipo_trabajo: any[];
+            }
+            ```
+
+2. Cambiar el servicio **info-pagina.service.ts** para usar la interface.
+
+    * Declaramos una propiedad dentro de la clase de tipo Interface
+
+        `info : InfoPaginaInterface = {};`
+
+        Esto nos marca un error, ya que nos dice que las propiedades son obligatorias.
+        
+    * Para hacer que las propiedades sean opcionales cambiamos la interfaz añadiendo ? a cada propiedad:
+
+        ```
+        export interface InfoPaginaInterface {
+            titulo?: string;
+            email?: string;
+            nombre_corto?: string;
+            pagina_autor?: string;
+            facebook?: string;
+            twitter?: string;
+            instagram?: string;
+            tublr?: string;
+            equipo_trabajo?: any[];
+        }
+        ``` 
+
+    * También puedo especificar que la respuesta obtenida por el servicio es de tipo **InfoPaginaInterface**, por lo que puedo asignar mi respuesta a la propiedad creada **info**
+    
+        ```
+        // Leer el archivo JSON
+        this.http.get('assets/data/data-pagina.json')
+            .subscribe ( (resp: InfoPaginaInterface) => {
+                console.log(resp);
+                console.log(resp.facebook);
+                console.log(resp['twitter']);
+
+                this.info = resp;
+            });
+        ```
+
+    * Al poner el tipo de la respuesta **InfoPaginaInterface** en lugar de **any** tiene la ventaja de que:
+        
+        * Ya puedo usar la notación de punto con **resp**
+        * Me saldrán todas las propiedades en el asistente al poner .
 
 ## Usando el servicio para reemplazar información en la página web
 
