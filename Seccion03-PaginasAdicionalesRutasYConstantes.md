@@ -138,6 +138,48 @@
 
 ## Editando el menú de navegación
 
+Vamos a enlazar nuestras opciones de menú con las rutas declaradas en el **app-routing.module.ts**
+
+La forma de hacerlo es cambiando los **href** por **routerLink**, es lo que usa Angular, además también usaremos **routerLinkActive** para indicar la ruta activa.
+
+* Debemos hacer un ajuste en nuestro **app-routing.module.ts** ya que al tener
+
+    `{ path: '', component: PortafolioComponent },`
+
+    Causa un conflicto con todas las rutas todas creen que empiezan así, siempre es mejor asignar un valor, por lo que nuestras nuevas rutas son:
+
+    ```
+    { path: 'home', component: PortafolioComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'item', component: ItemComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    ```
+
+* Cambiar las rutas en **header.component.ts**
+
+    ```
+    <li routerLinkActive="active" class="rk-menu__item">
+        <a routerLink="home" class="rk-menu__link">Home</a>
+    </li>
+    <li routerLinkActive="active" class="rk-menu__item">
+        <a routerLink="about" class="rk-menu__link">About</a>
+    </li>
+    ```
+
+* Cambiar las rutas en **footer.component.ts**
+
+    ```
+    <li routerLinkActive="active" class="rk-menu__item">
+        <a routerLink="about" class="rk-menu__link">About</a>
+    </li>
+    ```
+
+* Cambiar la ruta a un ítem en **portafolio.component.html**
+
+    ```
+    <a routerLink="/item" class="rk-item ae-masonry__item">
+    ```
+
 ## Uso del hash en las rutas
 
 ## Código fuente de la sección
