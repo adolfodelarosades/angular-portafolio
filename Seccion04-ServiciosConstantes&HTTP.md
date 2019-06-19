@@ -261,7 +261,7 @@ Tenemos la información de la respuesta en la propiedad **info** del servicio, v
         `<a href="#0" class="rk-social-btn ">`
 
         Por
-         
+
         ```
         <a target="_black" [href]="infoPagSer.info.facebook" class="rk-social-btn ">
         <a target="_black" [href]="infoPagSer.info.twitter" class="rk-social-btn ">
@@ -283,4 +283,14 @@ Tenemos la información de la respuesta en la propiedad **info** del servicio, v
 
 ## Agregando animaciones a nuestras páginas
 
-##Código fuente de la sección
+* Para añadir animaciones vamos a usar una librería llamada **animate.css**
+
+    [animate.css](https://daneden.github.io/animate.css/)
+
+* En el archivo **styles.css** vamos a añadir las animaciones deseadas 
+
+* En las páginas **about.component.html** y **portafolio.component.html** añadiremos las clases de las animaciones a las imágenes:
+
+    `<div class="animated fadeIn">`
+
+## Código fuente de la sección
