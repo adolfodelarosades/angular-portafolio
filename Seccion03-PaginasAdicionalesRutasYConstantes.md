@@ -67,7 +67,7 @@
 
 * Dentro del directorio **app** creamos el archivo **app-routing.module.ts**
 
-* Tecleamos el siguiente contenido al archivo **app-routing.module.ts**
+* Tecleamos el siguiente contenido en el archivo **app-routing.module.ts**
  
     ```javascript
     const app_routes: Routes = [
@@ -100,28 +100,15 @@
     ],
     ```
 
-    ```javascript
-    function test() {
-       console.log("look ma’, no spaces");
-    }
-    ```
-
-```
-function test() {
-  console.log("notice the blank line before this function?");
-}
-```
-
 * Para que renderice las diferentes páginas debe cambiar el **app.component.html** usando el **router-outlet**
 
     ```
     <app-header></app-header>
     <section class="ae-container-fluid rk-main">
-    <router-outlet></router-outlet>
+    **<router-outlet></router-outlet>**
     </section>
     <app-footer></app-footer>
     ```
-
 
 * Si cargamos la aplicación y nos manda el siguiente error
 
@@ -142,13 +129,12 @@ function test() {
 
 * Ya puedo cargar las diferentes rutas que ingresamos en **app-routing.module.ts**
 
-    `http://localhost:4200/portafolio`
-
-    `http://localhost:4200/item`
-
-    `http://localhost:4200/about`
-
-    `http://localhost:4200/cualquiercosa`
+    ```
+    http://localhost:4200/portafolio
+    http://localhost:4200/item
+    http://localhost:4200/about
+    http://localhost:4200/cualquiercosa
+    ```
 
 ## Editando el menú de navegación
 
