@@ -263,5 +263,54 @@ Pueden usar este link para abrir el codepen donde descargaremos el loading que u
 
 ## Agregando un loading a nuestro portafolio
 
+1. Ir al link de la lección anterior.
+
+2. Copiar el css en nuestro **style.css**
+
+3. Incluir el código **html** dentro de nuestro archivo **portafolio.component.html**
+
+4. Esto me pinta el loading encima de todos los productos, debemos pintarlo bajo ciertas condiciones para que no aparezca siempre.
+
+5. En **producto.service.ts** declaramos una propiedad booleana **cargando** inicializada a **true**, el valor se lo cambiamos a **false** cuando el servicio ya conozca la respuesta.
+
+    ```
+    cargando = true;
+
+    ...
+    private cargarProductos() {
+        this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
+        .subscribe( (resp: ProductoInterface[]) => {
+            this.productos = resp;
+            this.cargando = false;
+        });
+    }
+    ```
+
+6. Mientras que la propiedad cargando = true se mostrara el loading y no se mostraran los productos, por lo que usamos la directiva **ngIf** para hacerlo.
+
+    ```
+    <!-- Loading -->
+    <div align="center" *ngIf="productosService.cargando">
+    ....
+    <!-- Productos -->
+    <div *ngIf="!productosService.cargando" ...
+    ```
+
+7. Como lo hace muy rápido metemos un retardo de 2 seg. para apreciarlo.
+
+    ```
+    private cargarProductos() {
+        this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
+        .subscribe( (resp: ProductoInterface[]) => {
+            this.productos = resp;
+            setTimeout(() => {
+            this.cargando = false;
+            }, 2000);
+        });
+    }
+    ```    
+
 ## Código fuente de la sección	
     
+:+1:
+
