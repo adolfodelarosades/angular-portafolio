@@ -212,6 +212,47 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
 
 ## Desplegando los artículos en el home
 
+1. En **producto.service.ts** crear una propiedad **productos** que sea un array de **ProductoInterface** y asignamos la respuesta a esta propiedad
+
+    ```
+    productos: ProductoInterface[] = [];
+    ...
+    this.productos = resp;
+    ```
+
+2. Inyectamos el servicio **producto.service** en nuestro **portafolio.component.ts**
+
+    `constructor( public productosService: ProductosService) { }`
+
+3. Modificamos **portafolio.component.html** para meter la directiva **ngFor**
+
+    ```
+    <a *ngFor="let producto of productosService.productos" routerLink="/item" class="animated fadeIn rk-item ae-masonry__item">
+        <img src="assets/img/project-1.jpg" alt="">
+        <div class="item-meta">
+          <h2>Essential Stationery</h2>
+          <p>Branding</p>
+        </div>
+    </a>
+    ```
+
+    Esto lo único que hace es pintar 15 veces la misma información.
+    Vemos que tenemos que hacer ciertos ajustes con las imágenes.
+
+4. Del material de Firebase vamos a copiar la carpeta **productos** la vamos a copiar dentro de nuestra carpeta **assets**. ¿Por qué no se usa Firebase?
+
+5. Modificamos **portafolio.component.html** para que pininterpolete los valores usando el servicio en lugar de tenerlos harcodeados.
+
+    ```
+    <a *ngFor="let producto of productosService.productos" routerLink="/item" class="animated fadeIn rk-item ae-masonry__item">
+        <img src="assets/productos/{{ producto.url }}.jpg" alt="">
+        <div class="item-meta">
+          <h2>{{ producto.titulo }}</h2>
+          <p>{{ producto.categoria }}</p>
+        </div>
+    </a>
+    ```
+
 ## URL del Loading que usaremos - SVG
 
 ## Agregando un loading a nuestro portafolio
