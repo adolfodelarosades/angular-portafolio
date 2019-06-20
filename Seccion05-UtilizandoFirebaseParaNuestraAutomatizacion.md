@@ -193,7 +193,7 @@ Ya podemos sustituir la información harcodeada en nuestra página about, por la
 
 1. Inyectar el servicio en **about.component.ts**
 
-    constructor( public infoPagSer: InfoPaginaService ) { }
+    `constructor( public infoPagSer: InfoPaginaService ) { }`
 
 2. Remplazar la información fija en **about.component.html** por lo recuperado en el servicio
 
