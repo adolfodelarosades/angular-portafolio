@@ -189,3 +189,22 @@ Ir a [firebase](https://firebase.google.com/)
 
 ## Mostrando la información de Firebase en el HTML
 
+Ya podemos sustituir la información harcodeada en nuestra página about, por la recuperada del servicio REST.
+
+1. Inyectar el servicio en **about.component.ts**
+
+    constructor( public infoPagSer: InfoPaginaService ) { }
+
+2. Remplazar la información fija en **about.component.html** por lo recuperado en el servicio
+
+    ```
+    <div class="ae-grid au-xs-ta-center au-mb-4">
+        <div *ngFor="let persona of infoPagSer.equipo" class="animated fadeIn ae-grid__item item-lg-4 ae-kappa au-mb-3">
+            <img [src]="persona.url" alt="" class="au-mb-3">
+            <h5 class="ae-u-bolder au-mt-2">{{ persona.nombre }}</h5>
+            <p class="ae-u-bolder au-mb-3">{{ persona.puesto }}</p>
+            <p class="au-lg-ta-left au-mb-3 au-pl-4 au-pr-4">{{ persona.descripcion}}</p>
+            <a target="_blank" href="https://twitter.com/{{ persona.twitter}}" class="ae-u-bolder au-underline">{{ persona.twitter}}</a>
+        </div>
+    </div>
+    ```
