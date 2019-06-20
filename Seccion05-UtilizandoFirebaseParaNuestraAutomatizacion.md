@@ -151,5 +151,41 @@ Ir a [firebase](https://firebase.google.com/)
 
 ## Carga de la información de Firebase a nuestra página
 
+* Vamos a leer el servicio REST de Firebase para recuperar los datos del JSON y pintarlos en la consola. Para que el constructor no este muy cargado realizaremos una función por cada servicio que leamos y luego solo llamaremos esas funciones en el constructor.
+
+    ```
+    info: InfoPaginaInterface = {};
+    equipo: any[] = [];
+
+    constructor( private http: HttpClient) {
+        this.cargarInfo();
+        this.cargarEquipo();
+    }
+
+    private cargarInfo(){
+        // Leer el archivo JSON
+        this.http.get('assets/data/data-pagina.json')
+        .subscribe ( (resp: InfoPaginaInterface) => {
+            this.info = resp;
+        });
+    }
+
+    private cargarEquipo(){
+        // Leer el API REST FIREBASE
+        this.http.get('https://angular-portafolio-52ee6.firebaseio.com/equipo.json')
+        .subscribe ( (resp: any[]) => {
+            this.equipo = resp;
+            console.log(resp);
+        });
+    }
+
+    (3) [{…}, {…}, {…}]
+        0: {descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.", nombre: "Robert T. Williams", puesto: "Graphic Designer", twitter: "@robertwilliams", url: "https://firebasestorage.googleapis.com/v0/b/angula…=media&token=76c2469f-e516-4d54-900e-7b2063f3e401"}
+        1: {descripcion: "Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.", nombre: "Angelina B. Widow", puesto: "Founder / CEO", twitter: "@angelinawidow", url: "https://firebasestorage.googleapis.com/v0/b/angula…=media&token=521854fc-936e-4dc2-8585-784ef41e674b"}
+        2: {descripcion: "Excepteur sint occaecat cupidatat non proident, su… qui officia deserunt mollit anim id est laborum.", nombre: "Patrick Anderson", puesto: "Art Director", twitter: "@patrickanderson", url: "https://firebasestorage.googleapis.com/v0/b/angula…=media&token=34518991-e20f-4964-aad9-3315de5687af"}
+        length: 3
+        __proto__: Array(0)
+    ```
+
 ## Mostrando la información de Firebase en el HTML
 
