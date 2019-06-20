@@ -203,6 +203,7 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
 7. En **productos.service.ts** indico que mi **resp** es del tipo **ProductoInterface**
 
     ```
+    import { ProductoInterface } from '../interfaces/producto.iterface';
     ...
     .subscribe( (resp: ProductoInterface[]) => {
     ...
