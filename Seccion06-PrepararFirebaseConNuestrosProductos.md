@@ -255,6 +255,12 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
 
 ## URL del Loading que usaremos - SVG
 
+Loading SVG que usaremos
+
+Pueden usar este link para abrir el codepen donde descargaremos el loading que usaremos en nuestra app.
+
+[Loading SVG - Klerith - Codepen.io](https://codepen.io/Klerith/pen/RZpwKm)
+
 ## Agregando un loading a nuestro portafolio
 
 ## Código fuente de la sección	
