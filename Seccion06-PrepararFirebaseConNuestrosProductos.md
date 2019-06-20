@@ -163,7 +163,52 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
     length: 15
     __proto__: Array(0)
     ```
-    
+
+## Crear la Interface de **productos_idx**
+
+1. Copiar en el clipboard todo el JSON de productos_idx, en el enlace:
+
+    `https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json` 
+
+2. Abrimos un nuevo archivo en VSC.
+
+3. Presionamos **Ctrl + Shift + P**
+
+4. Buscar y seleccionar JSON to TS
+
+5. Se crea la interface
+
+    ```
+    interface RootObject {
+        categoria: string;
+        cod: string;
+        titulo: string;
+        url: string;
+    }
+    ```
+
+    Le cambiamos el nombre para que quede así:
+
+    ```
+    export interface ProductoInterface {    
+        categoria: string;
+        cod: string;
+        titulo: string;
+        url: string;
+    }
+    ```
+
+6. Salvamos el archivo como **interfaces/producto.iterface.ts**
+
+7. En **productos.service.ts** indico que mi **resp** es del tipo **ProductoInterface**
+
+    ```
+    ...
+    .subscribe( (resp: ProductoInterface[]) => {
+    ...
+    }
+    ```
+
 ## Desplegando los artículos en el home
 
 ## URL del Loading que usaremos - SVG
