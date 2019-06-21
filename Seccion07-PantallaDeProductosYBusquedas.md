@@ -64,7 +64,7 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
     }
     ```
 
-    En parámetros recibimos todos los parámetros enviados y  podemos seleccionar uno en particular:
+    En **parametros** recibimos todos los parámetros enviados y  podemos seleccionar uno en particular:
 
     ```
     {codigo: "prod-10"}
