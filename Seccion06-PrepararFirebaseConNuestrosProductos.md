@@ -190,7 +190,7 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
     Le cambiamos el nombre para que quede así:
 
     ```
-    export interface ProductoInterface {    
+    export interface ProductoIDXInterface {    
         categoria: string;
         cod: string;
         titulo: string;
@@ -200,22 +200,22 @@ Antes de cargar información en Firebase vamos a ver como se respalda lo que ya 
 
 6. Salvamos el archivo como **interfaces/producto.iterface.ts**
 
-7. En **productos.service.ts** indico que mi **resp** es del tipo **ProductoInterface**
+7. En **productos.service.ts** indico que mi **resp** es del tipo **ProductoIDXInterface**
 
     ```
-    import { ProductoInterface } from '../interfaces/producto.iterface';
+    import { ProductoIDXInterface } from '../interfaces/producto.iterface';
     ...
-    .subscribe( (resp: ProductoInterface[]) => {
+    .subscribe( (resp: ProductoIDXInterface[]) => {
     ...
     }
     ```
 
 ## Desplegando los artículos en el home
 
-1. En **producto.service.ts** crear una propiedad **productos** que sea un array de **ProductoInterface** y asignamos la respuesta a esta propiedad
+1. En **producto.service.ts** crear una propiedad **productos** que sea un array de **ProductoIDXInterface** y asignamos la respuesta a esta propiedad
 
     ```
-    productos: ProductoInterface[] = [];
+    productos: ProductoIDXInterface[] = [];
     ...
     this.productos = resp;
     ```
@@ -279,7 +279,7 @@ Pueden usar este link para abrir el codepen donde descargaremos el loading que u
     ...
     private cargarProductos() {
         this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
-        .subscribe( (resp: ProductoInterface[]) => {
+        .subscribe( (resp: ProductoIDXInterface[]) => {
             this.productos = resp;
             this.cargando = false;
         });
@@ -301,7 +301,7 @@ Pueden usar este link para abrir el codepen donde descargaremos el loading que u
     ```
     private cargarProductos() {
         this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
-        .subscribe( (resp: ProductoInterface[]) => {
+        .subscribe( (resp: ProductoIDXInterface[]) => {
             this.productos = resp;
             setTimeout(() => {
             this.cargando = false;
