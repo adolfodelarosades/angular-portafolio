@@ -167,6 +167,68 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
 ## Actualizando la página del producto
 
+* En **item.component.ts** vamos a definir la propiedad **producto** de tipo **ProductoInterface**, lo podríamos hacer así:
+
+    `producto: ProductoInterface = {};`
+
+    Pero si lo hago así me marca error porque las propiedades en la interface son obligatorias, tendría que ponerles **?** a todas ellas para que sean opcionales, cosa que no vamos a hacer, por lo que en lugar de ello pondremos solo:
+
+    `producto: ProductoInterface;`
+
+    Si solo la declaramos **producto** tendría el valor de **undefined**, por lo que sería un problema al usarlo, ya veremos cómo solventar el error.
+
+* Asigno lo que obtengo del servicio a esta propiedad:
+
+    `this.producto = producto;`
+
+* En **item.component.html** vamos a sustituir los valores harcodeados por lo que regresa el servicio. Por ejemplo:
+
+    `<h1 class="ae-u-bolder rk-portfolio-title ">Essential Stationery</h1>`
+
+    Por esto:
+
+    `<h1 class="ae-u-bolder rk-portfolio-title ">{{ producto.producto }}</h1>`
+
+    Si vamos al navegador vemos que ya toma el valor del servicio, pero sin embargo nos marca el error:
+
+    `ERROR TypeError: Cannot read property 'producto' of undefined`
+
+    Esto es porque en el **ts** no inicializamos el valor de producto, podríamos solventar el error si ponemos un **?** al usar producto:
+
+    `<h1 class="ae-u-bolder rk-portfolio-title ">{{ producto?.producto }}</h1>`
+
+    Esto nos elimina el error, pero tendríamos que hacer siempre lo mismo al usar **producto** 
+
+    La otra forma de solventar el problema es preguntar al inicio de la sección si el producto existe continua, de lo contrario no renderiza nada del producto, esto lo hacemos con:
+
+    `<section *ngIf="producto" ....`
+
+    De esta forma ya no nos marca el error.
+
+* Cambiamos lo valores harcodeados por los recuperados del servicio:
+
+    ```
+    <h4 class="ae-u-bolder">{{ producto.subtitulo2 }}</h4>
+    <p class="ae-eta">{{ producto.desc1 }}</p>
+    ```
+
+* Para modificar las imágenes tenemos que tener en cuenta que están almacenadas en la carpeta **assets/productos/prod-X**, aquí **prod-X** se refiere al parámetro que se envia al servicio (QUE NO TENEMOS EN PRODUCTO), por lo que hay que pasarlo de alguna manera desde el *ts** para que el **html** tenga acceso a el. En **item.component.ts** declaramos la propiedad **productoCod** y le asignamos el valor del parámetro:
+
+    ```
+    productoCod: string;
+    ....
+    this.productoCod = parametros['codigo'];
+    ```
+
+* Por lo que ya podemos cambiar dos de las fotos (La principal en la siguiente sección). En la primera foto ponemos:
+
+    `<img src="assets/productos/{{ productoCod }}/pic-1.jpg"....`
+
+* En la segunda foto ponemos:
+
+    `<img src="assets/productos/{{ productoCod }}/pic-2.jpg"....`
+
+
 ## Reemplazando las imágenes del producto
 
 ## Creando la página de búsqueda
