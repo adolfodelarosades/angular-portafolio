@@ -520,6 +520,7 @@ Vamos a resolver el problema de que cuando refrescamos la página **search** no 
 * Cuando recargamos ya me muestra el arreglo **productosFiltrados** con valores
 
     `(15) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]`
+    
     `(15) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]`
 
 ## Código fuente de la sección
