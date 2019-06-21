@@ -58,8 +58,8 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
         this.route.params
         .subscribe( parametros => {
             console.log(parametros);
-            console.log(parametros.codigo)
-            console.log(parametros['codigo'])
+            console.log(parametros.codigo);
+            console.log(parametros['codigo']);
         });
     }
     ```
