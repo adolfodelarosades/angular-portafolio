@@ -363,6 +363,98 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
 ## Diseño y filtro de la página de búsqueda
 
+* En **search.component.ts** necesitamos recibir el parámetro **cadenaBuscar** para lo cual necesitamos inyectar el **ActivatedRoute** que es el que nos permite manejar parámetros.
+
+    `constructor( private route: ActivatedRoute) { }`
+
+* En **ngOnInit()** recogemos los parámetros, **cadenaBuscar** es el único parámetro que mandamos, recordar que ese nombre fue el que se le dio en **app-routing.module.ts**
+
+    `{ path: 'search/:cadenaBuscar', component: SearchComponent },`
+
+
+    ```
+    ngOnInit() {
+        this.route.params
+        .subscribe ( params => {
+            console.log(params['cadenaBuscar']);
+        });
+    }
+    ```
+
+    En la consola nos pinta **libros**, todo correcto.
+
+* En **productos.service.ts** vamos a declarar una propiedad **productosFiltrados** donde almacenaremos los productos que cumplan con la condición.
+
+    `productosFiltrados: ProductoIDXInterface[] = [];`
+
+* Vamos a crear el método **buscarProducto** que en teoría va a ser el encargado de buscar en nuestro arreglo original los elementos que cumplan la condición y los va a ir metiendo en el nuevo arreglo **productosFiltrados** para lo cual se usa el método **filter** el cual recibe la condición de filtrado, para esta primera versión de nuestro método vamos a incluir todos los elementos poniendo la condición siempre **true**. Mandamos el resultado a la consola.
+
+    ```
+    public buscarProducto( termino: string ) {
+        this.productosFiltrados = this.productos.filter( producto => {
+            return true;
+        });
+        console.log(this.productosFiltrados);
+    }
+    ```
+
+    Esto por ahora no tiene mucho sentido porque los dos arreglos tienen los mismos valores. Pero servirá para ver algo que sucede.
+
+* Vamos a inyectar este servicio en **search.component.ts**
+
+    ```
+    constructor( private route: ActivatedRoute,
+               public productosService: ProductosService ) { }
+    ```
+
+* Con el parámetro que recibimos en **search.component.ts** llamamos a **buscarProducto(termino)** del servicio **productos.services.ts**
+
+    ```
+    ngOnInit() {
+        this.route.params
+        .subscribe ( params => {
+            console.log(params['cadenaBuscar']);
+            this.productosService.buscarProducto(params['cadenaBuscar']);
+        });
+    }
+    ```
+
+* Probemos todo esto, vamos a tener dos casos:
+
+    * Cuando estamos en la Home o en About y hacemos una búsqueda, en la consola se muestra el arreglo **productosFiltrados**
+
+    * Pero cuando ya estoy en la página **search** y la recargo el arreglo **productosFiltrados** aparece vacío.
+
+        ```
+        libros
+        (15) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+        libros
+        []
+        ```
+
+    * Esto pasa por que cuando recargamos la página **search** que a su vez llama en su constructor el servicio **producto.service.ts** que en su constructor ejecuta el método **cargarProductos()** en modo asíncrono, mientras tanto al mismo tiempo en **search** continua ejecutando el **ngOnInit()** que llama al método **buscarProducto** del servicio **producto.service.ts** donde carga **productosFiltrados** que dependen de **productos** que es posible que aún no se hayan cargado, por lo que **productosFiltrados** da como resultado un arreglo vacío.
+    
+* En nuestro **search.component.html** pongamos el código para pintar los resultados.
+
+    ```
+    <!-- Productos -->
+    <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
+        <a *ngFor="let producto of productosService.productosFiltrados" [routerLink]="['/item/', producto.cod ]" class="animated fadeIn rk-item ae-masonry__item">
+            <img src="assets/productos/{{ producto.url }}.jpg" alt="">
+            <div class="item-meta">
+            <h2>{{ producto.titulo }}</h2>
+            <p>{{ producto.categoria }}</p>
+            </div>
+        </a>
+    </div>
+    ```
+
+* Si desde la Home hacemos la búsqueda se cargan todos los productos porque es lo que se esta metiendo en **productosFiltrados**, nos sale el enlace:
+
+    `http://localhost:4200/#/search/libros`
+
+    Si recargamos este mismo URL ya no aparece nada, por el error que se mencionó anteriormente.
+
 ## Lógica del proceso de carga y filtro
 
 ## Código fuente de la sección

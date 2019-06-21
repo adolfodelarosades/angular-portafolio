@@ -9,6 +9,7 @@ export class ProductosService {
 
   cargando = true;
   productos: ProductoIDXInterface[] = [];
+  productosFiltrados: ProductoIDXInterface[] = [];
 
   constructor( private http: HttpClient) {
     this.cargarProductos();
@@ -26,6 +27,13 @@ export class ProductosService {
 
   public getProducto( codigo: string ) {
     return this.http.get(`https://angular-portafolio-52ee6.firebaseio.com/productos/${codigo}.json`);
+  }
+
+  public buscarProducto( termino: string ) {
+    this.productosFiltrados = this.productos.filter( producto => {
+      return true;
+    });
+    console.log(this.productosFiltrados);
   }
 
 }
