@@ -199,20 +199,20 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
     Esto nos elimina el error, pero tendríamos que hacer siempre lo mismo al usar **producto** 
 
-    La otra forma de solventar el problema es preguntar al inicio de la sección si el producto existe continua, de lo contrario no renderiza nada del producto, esto lo hacemos con:
+    La otra forma de solventar el problema es preguntar al inicio de la sección si el producto existe, continua de lo contrario no renderiza nada del producto, esto lo hacemos con:
 
     `<section *ngIf="producto" ....`
 
     De esta forma ya no nos marca el error.
 
-* Cambiamos lo valores harcodeados por los recuperados del servicio:
+* Cambiamos los valores harcodeados por los recuperados del servicio:
 
     ```
     <h4 class="ae-u-bolder">{{ producto.subtitulo2 }}</h4>
     <p class="ae-eta">{{ producto.desc1 }}</p>
     ```
 
-* Para modificar las imágenes tenemos que tener en cuenta que están almacenadas en la carpeta **assets/productos/prod-X**, aquí **prod-X** se refiere al parámetro que se envia al servicio (QUE NO TENEMOS EN PRODUCTO), por lo que hay que pasarlo de alguna manera desde el *ts** para que el **html** tenga acceso a el. En **item.component.ts** declaramos la propiedad **productoCod** y le asignamos el valor del parámetro:
+* Para modificar las imágenes tenemos que tener en cuenta que están almacenadas en la carpeta **assets/productos/prod-X**, aquí **prod-X** se refiere al parámetro que se envia al servicio (QUE NO TENEMOS EN PRODUCTO), por lo que hay que pasarlo de alguna manera desde el **ts** para que el **html** tenga acceso a el. En **item.component.ts** declaramos la propiedad **productoCod** y le asignamos el valor del parámetro:
 
     ```
     productoCod: string;
@@ -228,6 +228,7 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
     `<img src="assets/productos/{{ productoCod }}/pic-2.jpg"....`
 
+* Para que esto sea valido todas las fotos de todos los productos deben tener estos nombres pic-1.jpg, pic-2.jpg, etc.
 
 ## Reemplazando las imágenes del producto
 
