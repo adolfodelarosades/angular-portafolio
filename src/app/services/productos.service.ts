@@ -16,12 +16,15 @@ export class ProductosService {
   }
 
   private cargarProductos() {
-    this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
-      .subscribe( (resp: ProductoIDXInterface[]) => {
-        this.productos = resp;
-        setTimeout(() => {
-          this.cargando = false;
-        }, 2000);
+    return new Promise ( (resolve, reject) => {
+      this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
+        .subscribe( (resp: ProductoIDXInterface[]) => {
+          this.productos = resp;
+          setTimeout(() => {
+            this.cargando = false;
+            resolve();
+          }, 2000);
+        });
       });
   }
 
@@ -30,10 +33,22 @@ export class ProductosService {
   }
 
   public buscarProducto( termino: string ) {
-    this.productosFiltrados = this.productos.filter( producto => {
-      return true;
-    });
-    console.log(this.productosFiltrados);
+
+    if ( this.productos.length === 0) {
+      this.cargarProductos().then( () => {
+        // ejecutar después de tener los productos
+        // aplicar el filtro
+        this.filtrarProductos( termino);
+
+      });
+    } else {
+      // aplicar el filtro
+      this.filtrarProductos( termino);
+    }
+  }
+
+  private filtrarProductos( termino: string ) {
+    console.log(this.productos);
   }
 
 }

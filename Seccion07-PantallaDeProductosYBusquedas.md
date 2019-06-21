@@ -455,6 +455,66 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
     Si recargamos este mismo URL ya no aparece nada, por el error que se mencionó anteriormente.
 
-## Lógica del proceso de carga y filtro
+## Arreglar la lógica del proceso de carga usando Promise
+
+Vamos a resolver el problema de que cuando refrescamos la página **search** no nos aparecen los productos en la consola.
+
+* Abrimos **productos.service** vamos a hacer unos cambios en el método **cargarProductos()**.
+
+    ```
+    private cargarProductos() {
+        return new Promise ( (resolve, reject) => {
+            this.http.get('https://angular-portafolio-52ee6.firebaseio.com/productos_idx.json')
+                .subscribe( (resp: ProductoIDXInterface[]) => {
+                    this.productos = resp;
+                    setTimeout(() => {
+                        this.cargando = false;
+                        resolve();
+                    }, 2000);
+                });
+        });
+    }
+    ```
+
+    * Hemos realizado lo siguiente:
+
+        * Convertir este método en una **Promise** para hacerlo asíncrono (ES6). Permite ejecutar cierto código hasta que se resuelva. Una **Promise** tiene un **callback** que recibe dos parámetros **resolve** y **reject**
+
+        * Metemos todo nuestro código dentro de la promesa.
+
+        * Hasta aquí la promesa se ejecuta, pero no nos está notificando si ya se hizo o no.
+
+        * Para indicar que la promesa termino exitosamente al finalizar el código ponemos **resolve();**
+
+* En el método **cargarProductos()** vamos a ejecutar el filtro cuando sepamos que existen datos.
+
+    ```
+    public buscarProducto( termino: string ) {
+        if ( this.productos.length === 0) {
+            this.cargarProductos().then( () => {
+                // ejecutar después de tener los productos
+                // aplicar el filtro
+                this.filtrarProductos( termino);
+            });
+        } else {
+            // aplicar el filtro
+            this.filtrarProductos( termino);
+        }
+    }
+    ```
+
+    * Hemos realizado lo siguiente:
+
+        * Si no existen datos en el arreglo **productos**, ejecutamos el método **cargarProductos()** y esperamos que se ejecute para entonces (**then** solo por que es **Promise**) filtramos los productos.
+
+        * Si ya existen datos en el arreglo **productos**  filtramos los productos.
+
+* En el método **filtrarProductos( termino)** por ahora solo pintamos el arreglo **productos** para comprobar que siempre tiene productos.
+
+    ```
+    private filtrarProductos( termino: string ) {
+        console.log(this.productos);
+    }
+    ```
 
 ## Código fuente de la sección
