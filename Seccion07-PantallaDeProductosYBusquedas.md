@@ -331,7 +331,7 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
     `{ path: 'search/:cadenaBuscar', component: SearchComponent },`
 
-* Necesitamos navegar de desde el **header.component.ts** hasta el **search.component.ts**, para lo cual debemos inyectar **Router** en **header.component.ts**
+* Necesitamos navegar desde el **header.component.ts** hasta el **search.component.ts** **pasándole el parámetro de búsqueda**, para lo cual debemos inyectar **Router** en **header.component.ts**
 
     ```
     import { Routes } from '@angular/router';
@@ -357,7 +357,7 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
     `search works!`
 
-    Y el URL que se forma es:
+    Y en el URL vemos claramente que se pasa como parámetro el término de búsqueda:
 
     `http://localhost:4200/#/search/libros`
 
