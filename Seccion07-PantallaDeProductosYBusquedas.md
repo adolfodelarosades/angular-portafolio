@@ -265,7 +265,9 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
     <header [ngStyle]="{'background-image': 'url(assets/productos/'+ productoCod + '/main.jpg)'}" class="rk-portfolio-cover  item-inside-1">
     ```
 
-    Nótese el truco para concatenar **proiductoCod**. Para que esto funcione en todos los productos la imagen principal se debe llamar **main.jpg**.
+    Nótese el truco para concatenar **proiductoCod**. 
+    
+    Para que esto funcione en todos los productos la imagen principal se debe llamar **main.jpg**.
 
 ## Creando la página de búsqueda
 
