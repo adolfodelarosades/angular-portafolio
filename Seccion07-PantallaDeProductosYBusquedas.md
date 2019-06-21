@@ -230,7 +230,42 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
 
 * Para que esto sea valido todas las fotos de todos los productos deben tener estos nombres pic-1.jpg, pic-2.jpg, etc.
 
-## Reemplazando las imágenes del producto
+## Reemplazando la imagen principal del producto
+
+* La imagen principal del ítem es un caso especial, ya que se renderiza vía CSS, veamos el siguiente código:
+
+    ```
+    <header class="rk-portfolio-cover  item-inside-1">
+        <div class="item-inside__meta">
+            <h1 class="ae-u-bolder rk-portfolio-title ">{{ producto.producto }}</h1>
+            <p class="ae-theta rk-portfolio-category ">{{ producto.categoria }}</p>
+        </div>
+    </header>
+    ```
+
+    La imagen se pinta en el **header** gracias a la clase **item-inside-1**, si vamos al archivo **urku.css** tenemos:
+
+    ```
+    .item-inside-1 {
+        background-image: url("../img/project-1.jpg");
+        background-position: 50% 100%;
+        background-size: 350%;
+    }
+    ```
+
+    Si comentamos:
+
+        `/*background-image: url("../img/project-1.jpg");*/`
+
+    En el navegador ya no sale la imagen.
+
+* En lugar de pintar la imagen vía css, lo haremos usando la directiva **ngStyle**
+
+    ```
+    <header [ngStyle]="{'background-image': 'url(assets/productos/'+ productoCod + '/main.jpg)'}" class="rk-portfolio-cover  item-inside-1">
+    ```
+
+    Nótese el truco para concatenar **proiductoCod**. Para que esto funcione en todos los productos la imagen principal se debe llamar **main.jpg** en todos ellos.
 
 ## Creando la página de búsqueda
 
