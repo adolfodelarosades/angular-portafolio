@@ -49,6 +49,16 @@ export class ProductosService {
 
   private filtrarProductos( termino: string ) {
     console.log(this.productos);
+    termino = termino.toLocaleLowerCase();
+    this.productosFiltrados = [];
+
+    this.productos.forEach( prod => {
+      const categoria = prod.categoria.toLocaleLowerCase();
+      const titulo = prod.titulo.toLocaleLowerCase();
+      if ( categoria.indexOf(termino) >= 0 || titulo.indexOf(termino) >= 0 ){
+        this.productosFiltrados.push( prod );
+      }
+    });
   }
 
 }

@@ -520,7 +520,39 @@ Vamos a resolver el problema de que cuando refrescamos la página **search** no 
 * Cuando recargamos ya me muestra el arreglo **productosFiltrados** con valores
 
     `(15) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]`
-    
+
     `(15) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]`
 
+
+## Filtrar los datos
+Vamos a implementar el método **filtrarProductos( termino)** teniendo las siguientes consideraciones:
+
+* Limpiar el arreglo **productosFiltrados** en cada nueva búsqueda
+
+* Recorrer el arreglo **productos** mediante un **forEach**
+
+* Para cada producto verificamos en su **titulo** y **categoria** si existe el término a buscar, no importando si está en mayúsculas o minúsculas
+
+* Si coincide incluir ese producto en **productosFiltrados** 
+
+* Al implementarlo se mostrará el resultado
+
+    ```
+    private filtrarProductos( termino: string ) {
+        console.log(this.productos);
+        termino = termino.toLocaleLowerCase();
+        this.productosFiltrados = [];
+
+        this.productos.forEach( prod => {
+        const categoria = prod.categoria.toLocaleLowerCase();
+        const titulo = prod.titulo.toLocaleLowerCase();
+        if ( categoria.indexOf(termino) >= 0 || titulo.indexOf(termino) >= 0 ){
+            this.productosFiltrados.push( prod );
+        }
+        });
+    }
+    ```
+    
 ## Código fuente de la sección
+
+:+1:
