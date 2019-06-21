@@ -269,7 +269,97 @@ Debemos mandar un parámetro para indicar que producto deseamos pintar.
     
     Para que esto funcione en todos los productos la imagen principal se debe llamar **main.jpg**.
 
-## Creando la página de búsqueda
+## Creando la página de búsqueda y recoger el termino buscado
+
+* Vamos a implementar la búsqueda en nuestra página, esta opción se encuentra en el **header.component.html**, donde existe un **form** que maneja está opción.
+
+    ```
+    <form class="rk-search">
+        <input type="text" placeholder="Search" id="urku-search" class="rk-search-field">
+        <label for="urku-search">
+          <svg>
+            <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+          </svg>
+        </label>
+    </form>
+    ```
+
+    El hecho de trabajar con **form** implicaría que para manejar el formulario tendríamos que importar el **formModule** y eso cargaría mi página para leer solo un campo.
+    
+    Existe otra forma de leer el campo sin usar **form** y así no usamos  **formModule**.
+
+    Cambiemos  **form** por un **div**, identificaremos nuestro **input** con una clase **#txtBuscar** y manejaremos el evento **keyup.enter**
+
+    ```
+    <div class="rk-search">
+        <input type="text" 
+               (keyup.enter)="buscarProducto( txtBuscar.value )"  
+               placeholder="Buscar..." 
+               id="urku-search" 
+               class="rk-search-field"
+               #txtBuscar>
+        <label for="urku-search">
+          <svg>
+            <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+          </svg>
+        </label>
+    </div>
+    ```
+
+* En **header.component.ts** implementamos el método **buscarProducto(valor)**
+
+    ```
+    buscarProducto( cadenaBuscar: string ) {
+        console.log(cadenaBuscar);
+    }
+    ```
+
+    Hacemos una pequeña prueba para ver si funciona; todo correcto.
+
+* Debemos crear un nuevo componente **search** el cual se encargará de mostrar el resultado de lo buscado.
+
+    ```
+    $ ng g c pages/search --spec=false
+    Option "spec" is deprecated: Use "skipTests" instead.
+    CREATE src/app/pages/search/search.component.html (25 bytes)
+    CREATE src/app/pages/search/search.component.ts (269 bytes)
+    CREATE src/app/pages/search/search.component.css (0 bytes)
+    UPDATE src/app/app.module.ts (1008 bytes)
+    ```
+
+* Necesito incluir una nueva ruta en el **app-routing.module.ts** para este nuevo componente.
+
+    `{ path: 'search/:cadenaBuscar', component: SearchComponent },`
+
+* Necesitamos navegar de desde el **header.component.ts** hasta el **search.component.ts**, para lo cual debemos inyectar **Router** en **header.component.ts**
+
+    ```
+    import { Routes } from '@angular/router';
+    ....
+    constructor( public infoPagSer: InfoPaginaService,
+               private router: Routes ) { }
+    ```
+
+* Por lo que el método **buscarProducto(valor)** quedara así:
+
+    ```
+    buscarProducto( cadenaBuscar: string ) {
+        if (cadenaBuscar.length < 1 ) {
+        return;
+        }
+
+        // Navega a search
+        this.router.navigate(['/search', cadenaBuscar]);
+    }
+    ```
+
+* En el navegador ya puedo pulsar cualquier texto de búsqueda y me lleva a la página de **search** que aún no está implementada, solo me muestra el mensaje:
+
+    `search works!`
+
+    Y el URL que se forma es:
+
+    `http://localhost:4200/#/search/libros`
 
 ## Diseño y filtro de la página de búsqueda
 
