@@ -96,7 +96,7 @@ Seguimos los siguientes pasos para desplegar nuestra página en GitHub Pages.
 
 5. Me indica que mi página se publicara en el siguiente URL:
 
-    `https://adolfodelarosades.github.io/angular-productos/#/home`
+    `https://adolfodelarosades.github.io/angular-productos/`
 
     Después de algunos minutos se publica la página.
 
