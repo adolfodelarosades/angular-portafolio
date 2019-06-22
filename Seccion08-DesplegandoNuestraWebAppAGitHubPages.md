@@ -81,9 +81,27 @@
     `<!-- <base href="/"> -->`
 
     **Esto indica que se tome como path relativo el origen del repositorio y este no será el correcto en GitHub Pages.**
-    
-## Subiendo los archivos a GitHub
+
+## Subiendo los archivos a GitHub Pages
+
+Seguimos los siguientes pasos para desplegar nuestra página en GitHub Pages.
+
+1. Entramos a GitHub y seleccionamos nuestro repositorio
+
+2. Seleccionamos **Settings**
+
+3. Bajamos hasta **GitHub Pages**
+
+4. Pulsamos en el combo que dice **None** y seleccionamos **master branch /docs folder** (por eso llamamos **docs** a la carpeta)
+
+5. Me indica que mi página se publicara en el siguiente URL:
+
+    `https://adolfodelarosades.github.io/angular-productos/#/home`
+
+    Después de algunos minutos se publica la página.
+
+    !!!Funciona!!!
 
 ## Código fuente de la sección
 
-
+:+1:
