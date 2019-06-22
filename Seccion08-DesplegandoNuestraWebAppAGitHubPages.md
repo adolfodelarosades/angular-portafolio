@@ -75,6 +75,13 @@
 
     * Borrar la carpera **dist**
 
+
+* Es necesario hacer una modificación en el archivo **index.html** dentro de **docs**. Comentar la siguiente línea:
+
+    `<!-- <base href="/"> -->`
+
+    **Esto indica que se tome como path relativo el origen del repositorio y este no será el correcto en GitHub Pages.**
+    
 ## Subiendo los archivos a GitHub
 
 ## Código fuente de la sección
